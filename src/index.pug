@@ -4,6 +4,8 @@ html
     title Learn to code HTML, CSS and JaveScript
     meta(name="description", content="This is a HTML replica of W3schools.com")
     link(rel="stylesheet",href="style.css")
+    if config.entry.css.embed
+      link(rel="stylesheet" href=`${embedPath}` inline)
   body
     header
       a.current(href="/") Home
