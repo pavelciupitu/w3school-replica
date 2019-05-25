@@ -1,0 +1,17 @@
+extends ../../_component/layout/template
+
+block cool-config
+  -
+    var myTitle = 'Learn to code HTML Attributes'
+    var myDescription = 'Attributes provide additional information about HTML elements.'
+    var landingPage = 'HTML';
+    var activeLink = '/html/attributes';
+block awesome-content
+  h1=title
+  p=description
+  br
+  h2 Here is an example
+  p(title="This is a tooltip - it has aditional information") This paragraph has a tooltip. Hold the mouse over it.
+  a(href="https://www.youtube.com/watch?v=LAOLXzkR8aI") And this link takes you to see my Bungee Video.
+  p The next image will have width of 500 and height of 200
+  img(src="http://lorempixel.com/500/200", width="500", height="200", alt="I you cand read this text you are to close to the monitor, neeaaa: This text shows if the image fails to load")
