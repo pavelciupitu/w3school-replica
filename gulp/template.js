@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import mergeStream from 'merge-stream';
-import { getJsonData } from './util/util';
+import { getJsonData, getBaseUrl } from './util/util';
 import { getStaticFiles } from './util/util';
 import gulpConfig from './util/config';
 
@@ -19,6 +19,7 @@ const template = ({
   const dataPath = path.join(dir.source, dir.data);
   const templateCollection = dir.templateCollection;
   let embedPath;
+  let baseUrl = getBaseUrl(args, config);
 
   gulp.task('template', () => {
     let data = getJsonData({dataPath}) || {};
@@ -67,7 +68,8 @@ const template = ({
             data,
             template: templateData[value],
             taskTarget,
-            embedPath
+            embedPath,
+            baseUrl
           }
         }))
         .on('error', error => {

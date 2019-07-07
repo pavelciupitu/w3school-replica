@@ -5,10 +5,11 @@ import path from 'path';
 import foldero from 'foldero';
 import jsYaml from 'js-yaml';
 import chalk from 'chalk';
+import url from 'url';
 
-export const printCompile = (value) => {
-  console.clear();
-  console.log(chalk.yellow('You are currently compiling ') + chalk.inverse(value));
+export const printCompile = (value, args) => {
+  // console.clear();
+  args && !args.production && console.log(chalk.yellow('You are currently compiling ') + chalk.inverse(value));
 };
 
 export const logError = (name, message) => {
@@ -51,6 +52,28 @@ const getJsonData = obj => {
     });
   }
 };
+
+const getBaseUrl = (args, config) => {
+  let baseUrl = '/';
+  if (args.lang) {
+    config.lang = args.lang;
+  }
+  if (args.production) {
+    if (config.deployToGithubIo) {
+      // get the part after github.com
+      const path = url.parse(config.githubUrl).pathname.split('/');
+      // extract the authors, your GitHub username
+      const repository = path[2].split('.').reduce(a => a);
+      // construct the link to github.io used to access the project
+      // when it's deployed on github
+      baseUrl = `/${repository}/`;
+    }
+    else {
+      baseUrl = `${config.customUrl}/`;
+    }
+  }
+  return baseUrl;
+}
 
 const getImageCollection = obj => {
   return (
@@ -123,5 +146,6 @@ export {
   getJsonData,
   getImageCollection,
   printError,
-  fixWindows10GulpPathIssue
+  fixWindows10GulpPathIssue,
+  getBaseUrl
 };

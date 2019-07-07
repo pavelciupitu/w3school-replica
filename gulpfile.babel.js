@@ -24,6 +24,7 @@ import pug from './gulp/pug';
 import sass from './gulp/sass';
 import template from './gulp/template';
 import watch from './gulp/watch';
+import flip from './gulp/flip';
 import { printCompile } from './gulp/util/util.js';
 
 global.compileMode = 'all';
@@ -31,7 +32,7 @@ global.compileMode = 'all';
 const config = Object.assign({}, packageJsonData.config);
 const args = minimist(process.argv.slice(2));
 const dir = config.directory;
-const taskTarget = args.production ? dir.production : dir.development;
+const taskTarget = args.production ? `${dir.production}-haha` : dir.development;
 
 // Create a new browserSync instance
 const browserSync = browserSyncLib.create();
@@ -58,6 +59,8 @@ pug(taskOptionList);
 sass(taskOptionList);
 template(taskOptionList);
 watch(taskOptionList);
+flip(taskOptionList);
+
 // Server task with watch
 gulp.task(
   'dev',
@@ -85,7 +88,8 @@ gulp.task(
     'image',
     'sass',
     'pug',
-    'template'
+    'template',
+    'flip'
   )
 );
 
@@ -93,28 +97,33 @@ gulp.task(
 gulp.task('default', () => {
   console.log('Default gulp task');
 });
+if (!args.production) {
 
-const readline = require('readline');
-readline.emitKeypressEvents(process.stdin);
-process.stdin.setRawMode(true);
-process.stdin.on('keypress', (str, key) => {
-  if (key.name === 'a') {
-    compileMode = 'all';
+  const readline = require('readline');
+  readline.emitKeypressEvents(process.stdin);
+  if (process.stdin.setRawMode){
+    process.stdin.setRawMode(true)
   }
-  if (key.name === 'c') {
-    compileMode = 'current';
-  }
-  if (key.ctrl && key.name === 'c') {
-    process.exit();
-    console.clear();
-  } 
-  else {
-    // compile all
-    // console.clear();
-    // console.log(`You pressed the '${str}' key`);
-    // console.log();
-    // console.log(key);
-  }
-  printCompile(compileMode);
-});
-console.log('Any key here: ');
+
+  process.stdin.on('keypress', (str, key) => {
+    if (key.name === 'a') {
+      compileMode = 'all';
+    }
+    if (key.name === 'c') {
+      compileMode = 'current';
+    }
+    if (key.ctrl && key.name === 'c') {
+      process.exit();
+      console.clear();
+    } 
+    else {
+      // compile all
+      // console.clear();
+      // console.log(`You pressed the '${str}' key`);
+      // console.log();
+      // console.log(key);
+    }
+    printCompile(compileMode, args);
+  });
+  console.log('Any key here: ');
+}
