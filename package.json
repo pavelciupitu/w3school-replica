@@ -45,7 +45,7 @@
       "cssEmbed": "embed**.{scss,sass}",
       "cssModular": false,
       "css": {
-        "embed": false,
+        "embed": true,
         "external": true
       }
     }
@@ -65,7 +65,7 @@
   "bugs": {
     "url": "https://github.com/marianzburlea/pug-starter/issues"
   },
-  "homepage": "https://github.com/marianzburlea/pug-starter#readme",
+  "homepage": "https://pavelciupitu.github.io/w3school-replica",
   "devDependencies": {
     "@babel/cli": "7.2.3",
     "@babel/core": "7.3.3",
