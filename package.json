@@ -15,6 +15,7 @@
   },
   "//": "CUSTOM CONFIGURATION",
   "config": {
+    "baseUrl": "https://pavelciupitu.github.io/w3school-replica/",
     "customUrl": "https://pavelciupitu.github.io/w3school-replica/",
     "githubUrl": "https://pavelciupitu.github.io/w3school-replica/",
     "deployToGithubIo": true,
@@ -63,10 +64,10 @@
     "jade",
     "starter"
   ],
-  "author": "Marian Zburlea",
+  "author": "Pavel Ciupitu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/marianzburlea/pug-starter/issues"
+    "url": "https://github.com/pavelciupitu/pug-starter/issues"
   },
   "homepage": "https://pavelciupitu.github.io/w3school-replica",
   "devDependencies": {
