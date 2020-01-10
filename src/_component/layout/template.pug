@@ -1,11 +1,13 @@
 doctype html
 html
+  //- - var baseUrl = 'http://localhost:3000'
+  - var baseUrl = 'https://pavelciupitu.github.io/w3school-replica'  
   block cool-config
   head
     title=myTitle
-    meta(name="description", content="myDescription")
+    meta(name="description", content = myDescription)
     //- pentru exterior
-    link(rel="stylesheet",href=`https://pavelciupitu.github.io/w3school-replica/style.css`) 
+    link(rel="stylesheet", href=`${baseUrl}/style.css`)
     //- pentru interior
     //- if config.entry.css.embed
     //-   link(rel="stylesheet" href=`${embedPath}` embed)
